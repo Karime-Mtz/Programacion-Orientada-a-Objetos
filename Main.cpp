@@ -1,31 +1,55 @@
+#include <iostream>
 #include "Libro.h"
+#include "Novela.h"
+#include "Biografia.h"
+#include "Comic.h"
 #include "Usuario.h"
 #include "Valoracion.h"
-
-#include <string>
-#include <iostream>
 using namespace std;
 
-int main(){
-    // Crear objetos
-    Libro book2("Heartless", "Romance", "Marissa Meyer", 416);
-    Libro book3("Momo", "Novela", "Michael Ende", 320);
+int main() {
 
-    Usuario user2("Marta", 42, "Romance", 2);
-    Usuario user3("Carlos", 19, "Terror", 1);
+ 
+    // Crear libros:
 
-    Valoracion review2("Marta", "Heartless", "Top libros que he leido", 5);
-    Valoracion review3("Clara", "Momo", "Excelente", 5);
+    Libro Principito("El Principito", "Antoine de Saint-Exupéry", 120);
+    Novela Mujercitas("Mujercitas", "Louisa May", 600, "Romance", true);
+    Biografia Steve_Jobs("Steve Jobs", "Walter Isaacson", 600, "Steve Jobs");
+    Comic Batman("Batman: Año Uno", "Frank Miller", 140, "DC", "David Mazzucchelli");
 
-    book2.mostrar_info_libro();
-    user3.infoUsuario();
-    review2.mostrar_valoracion();
 
-    user3.setEdad(21);
-    user3.infoUsuario();
+    // Crear reseñas
+    Valoracion review1("Muy bonito y reflexivo", 5);
+    Valoracion review2("Me encantó la historia", 4);
+    Valoracion review3("Excelente libro", 5);
 
-    review2.borrar_comentarios();
-    review2.mostrar_valoracion();
+    Principito.agregar_review(review1);
+    Principito.agregar_review(review3);
+    Mujercitas.agregar_review(review2);
+
+    // Crear usuarios
+    Usuario Carlos("Carlos", 21, 0);
+    Usuario Marta("Marta", 36, 0);
+
+
+    Carlos.agregar_libro_prestado(Steve_Jobs);
+    Carlos.agregar_libro_prestado(Batman);
+    Marta.agregar_libro_prestado(Principito);
+
     
+    
+    cout << "\nInformación del libro\n";
+    Principito.mostrar_info_libro();
+    cout << "Promedio de calificación: " << Principito.getPromedio_calificacion() << endl;
+
+    cout << "\nInformación del comic\n";
+    Batman.mostrar_info_libro();
+    cout << "Universo: " << Batman.getUniverso() << endl;
+    cout << "Ilustrador: " << Batman.getIlustrador() << endl;
+
+    cout << "\nInformación del Usuario\n";
+    Carlos.infoUsuario();
+
+
     return 0;
 }
