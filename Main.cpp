@@ -1,3 +1,6 @@
+//Lo voy a hacer interactivo, con un menú, pero todavía me falta esa parte.
+
+
 #include <iostream>
 #include "Libro.h"
 #include "Novela.h"
