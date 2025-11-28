@@ -1,51 +1,64 @@
 #include <string>
 #include <iostream>
+#include <list>
 using namespace std;
 
 class Usuario {
     private:
         string nombre;
         int edad;
-        string genero_fav;
-        string libros_prestados[10];
+        Libro libros_prestados[10];
         int cantidad_prestados;
 
     public:
-        Usuario();
-        Usuario(string name, int age, string fav, int prestados);
+        Usuario(string name, int age, int prestados);
 
         void infoUsuario();
 
+        string getNombre();
+        int getEdad();
+        int getCantidad_prestados();
+        void mostrarLibros_prestados();
+
         void setNombre(string name);
         void setEdad(int age);
-        void setGeneroFavorito(string fav);
-        void agregar_libro_prestado(string book);
-        //void devolver_libro(string book);
+        void agregar_libro_prestado(Libro b);
+        void setCantidad_prestados(int n);
 };
 
-Usuario::Usuario(){
-    nombre = "Desconocido";
-    edad = 0;
-    genero_fav = "Desconocido";
-    cantidad_prestados = 0;
-}
 
-Usuario::Usuario(string name, int age, string fav, int prestados){
+Usuario::Usuario(string name, int age, int prestados){
     nombre = name;
     edad = age;
-    genero_fav = fav;
     cantidad_prestados = prestados;
 }
 
 void Usuario::infoUsuario(){
-    cout << nombre << " - ";
-    cout << edad << " - ";
-    cout << genero_fav<< endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Edad: " << edad << endl;
     cout << "Libros prestados:" << endl;
     for(int i = 0; i < cantidad_prestados; ++i) {
-        cout << " - " << libros_prestados[i] << endl;
+        cout << libros_prestados[i].getTitulo() << endl;
     }
-    cout << cantidad_prestados <<endl;
+}
+
+string Usuario::getNombre(){
+    return nombre;
+}
+
+int Usuario::getEdad(){
+    return edad;
+}
+
+int Usuario::getCantidad_prestados(){
+    return cantidad_prestados;
+}
+
+void Usuario::mostrarLibros_prestados(){
+    cout << "Libros prestados:" << endl;
+    for(int i = 0; i < cantidad_prestados; ++i) {
+        cout << libros_prestados[i].getTitulo() << endl;
+    }
 }
 
 void Usuario::setNombre(string name){
@@ -56,13 +69,16 @@ void Usuario::setEdad(int age){
     edad = age;
 }
 
-void Usuario::setGeneroFavorito(string fav){
-    genero_fav = fav;
+void Usuario::agregar_libro_prestado(Libro b){
+
+    if(cantidad_prestados<10){
+        for(int i = 0; i < cantidad_prestados; i++){
+            libros_prestados[cantidad_prestados] = b;
+            cantidad_prestados = cantidad_prestados + 1;
+        }
+    }
 }
 
-void Usuario::agregar_libro_prestado(string book){
-    cantidad_prestados = cantidad_prestados + 1;
-    libros_prestados[10].append(book);
-    cout << "Cantidad de libros prestados" << cantidad_prestados<< endl;
-    cout << libros_prestados << endl;
+void Usuario::setCantidad_prestados(int n){
+    cantidad_prestados = n;
 }
