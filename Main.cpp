@@ -1,6 +1,3 @@
-//Lo voy a hacer interactivo, con un menú, pero todavía me falta esa parte.
-
-
 #include <iostream>
 #include "Libro.h"
 #include "Novela.h"
@@ -12,7 +9,13 @@ using namespace std;
 
 int main() {
 
- 
+    string opcion;
+    // Menu
+    cout<< "Bienvenido a tu biblioteca digital:"<<endl;
+    cout <<"Elige una de las siguientes opciones (a/b/c)" << endl;
+    cin >> opcion;
+
+
     // Crear libros:
 
     Libro Principito("El Principito", "Antoine de Saint-Exupéry", 120);
@@ -22,13 +25,10 @@ int main() {
 
 
     // Crear reseñas
-    Valoracion review1("Muy bonito y reflexivo", 5);
-    Valoracion review2("Me encantó la historia", 4);
-    Valoracion review3("Excelente libro", 5);
 
-    Principito.agregar_review(review1);
-    Principito.agregar_review(review3);
-    Mujercitas.agregar_review(review2);
+    Principito.agregar_review("Muy bonito libro", 5);
+    Principito.agregar_review("Excelente", 5);
+    Mujercitas.agregar_review("Muy profundo", 4);
 
     // Crear usuarios
     Usuario Carlos("Carlos", 21, 0);
