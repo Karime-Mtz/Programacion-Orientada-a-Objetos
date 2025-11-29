@@ -1,6 +1,7 @@
 #include <string>
 #include <iostream>
 #include <list>
+#include "Libro.h"
 using namespace std;
 
 class Usuario {
@@ -22,7 +23,7 @@ class Usuario {
 
         void setNombre(string name);
         void setEdad(int age);
-        void agregar_libro_prestado(Libro b);
+        void agregar_libro_prestado(Libro &b);
         void setCantidad_prestados(int n);
 };
 
@@ -69,7 +70,7 @@ void Usuario::setEdad(int age){
     edad = age;
 }
 
-void Usuario::agregar_libro_prestado(Libro b){
+void Usuario::agregar_libro_prestado(Libro &b){
 
     if(cantidad_prestados<10){
         for(int i = 0; i < cantidad_prestados; i++){
