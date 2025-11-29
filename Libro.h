@@ -12,7 +12,8 @@ class Libro {
         string titulo;
         string autor;
         int num_pags;
-        Valoracion reviews[20];
+        Valoracion lista_reviews[20];
+        Valoracion review;
         int num_reviews;
 
     public:
@@ -30,7 +31,7 @@ class Libro {
         void setAutor(string author);
         void setNum_pags(int pags);
 
-        void agregar_review(Valoracion r);
+        void agregar_review(string comment, int cali);
         
 
 };
@@ -84,15 +85,16 @@ void Libro::setNum_pags(int pags){
 float Libro::getPromedio_calificacion(){
     float suma = 0.0;
     for (int i = 0; i < num_reviews; i++){
-        suma = suma + reviews[i].getCalificacion();
+        suma = suma + lista_reviews[i].getCalificacion();
     }
     suma = suma / num_reviews;
     return suma;
 }
 
-void Libro::agregar_review(Valoracion r){
+void Libro::agregar_review(string comment, int cali){
     if (num_reviews < 20) {
-        reviews[num_reviews] = r;
+        review = Valoracion(comment, cali);
+        lista_reviews[num_reviews] = review;
         num_reviews += 1;
     }
 }
