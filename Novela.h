@@ -9,7 +9,7 @@ class Novela : public Libro{
         bool es_saga;
     public:
             Novela();
-            Novela(string t, string a, int p, string g, bool e);
+            Novela(string t, string a, bool d, string g, bool e);
             //:Libro(t,a,p),genero(g),es_saga(e){};
             //Se puede definir desde aquí pero es mejor abajo
             
@@ -26,7 +26,7 @@ Novela::Novela() : Libro(){
     es_saga = false;
 }
 
-Novela::Novela(string t, string a, int p, string g, bool e): Libro(t,a,p){
+Novela::Novela(string t, string a, bool d, string g, bool e): Libro(t,a,d){
     genero = g;
     es_saga = e;
 }
