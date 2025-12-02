@@ -14,16 +14,17 @@ class Usuario {
     public:
         Usuario(string name, int age, int prestados);
 
-        void infoUsuario();
+        string infoUsuario();
 
         string getNombre();
         int getEdad();
         int getCantidad_prestados();
-        void mostrarLibros_prestados();
+        string mostrarLibros_prestados();
 
         void setNombre(string name);
         void setEdad(int age);
         void agregar_libro_prestado(Libro &b);
+        bool devolver_libro(string titulo);
         void setCantidad_prestados(int n);
 };
 
@@ -34,13 +35,16 @@ Usuario::Usuario(string name, int age, int prestados){
     cantidad_prestados = prestados;
 }
 
-void Usuario::infoUsuario(){
-    cout << "Nombre: " << nombre << endl;
-    cout << "Edad: " << edad << endl;
-    cout << "Libros prestados:" << endl;
+string Usuario::infoUsuario(){
+    stringstream datos_usuario;
+
+    datos_usuario << "\nNombre: " << nombre << "\n";
+    datos_usuario << "Edad: " << edad << "\n";
+    datos_usuario << "Libros prestados: " << "\n";
     for(int i = 0; i < cantidad_prestados; ++i) {
-        cout << libros_prestados[i].getTitulo() << endl;
+        datos_usuario << libros_prestados[i].getTitulo() << "\n";
     }
+    return datos_usuario.str();
 }
 
 string Usuario::getNombre(){
@@ -55,11 +59,13 @@ int Usuario::getCantidad_prestados(){
     return cantidad_prestados;
 }
 
-void Usuario::mostrarLibros_prestados(){
-    cout << "Libros prestados:" << endl;
+string Usuario::mostrarLibros_prestados(){
+    stringstream libros;
+    libros << "\nLibros prestados:" << "\n";
     for(int i = 0; i < cantidad_prestados; ++i) {
-        cout << libros_prestados[i].getTitulo() << endl;
+        libros << libros_prestados[i].getTitulo() << "\n";
     }
+    return libros.str();
 }
 
 void Usuario::setNombre(string name){
@@ -71,13 +77,27 @@ void Usuario::setEdad(int age){
 }
 
 void Usuario::agregar_libro_prestado(Libro &b){
+    if(cantidad_prestados < 10){
+        libros_prestados[cantidad_prestados] = b;
+        cantidad_prestados++;
+        b.set_disponible(false);
+    }
+}
 
-    if(cantidad_prestados<10){
-        for(int i = 0; i < cantidad_prestados; i++){
-            libros_prestados[cantidad_prestados] = b;
-            cantidad_prestados = cantidad_prestados + 1;
+bool Usuario::devolver_libro(string titulo){
+    for(int i = 0; i < cantidad_prestados; i++){
+
+        if(libros_prestados[i].getTitulo() == titulo){
+            libros_prestados[i].set_disponible(true);
+            for(int j = i; j < cantidad_prestados - 1; j++){
+                libros_prestados[j] = libros_prestados[j + 1];
+            }
+
+            cantidad_prestados -= 1;
+            return true;
         }
     }
+    return false; // no se encontró el libro
 }
 
 void Usuario::setCantidad_prestados(int n){
