@@ -14,7 +14,7 @@ class Valoracion {
         Valoracion();
         Valoracion(string comment, int cali);
 
-        void mostrar_valoracion();
+        string mostrar_valoracion();
 
         string getComentario();
         int getCalificacion();
@@ -35,14 +35,17 @@ Valoracion::Valoracion(string comment, int cali){
     calificacion = cali;
 }
 
-void Valoracion::mostrar_valoracion(){
+string Valoracion::mostrar_valoracion(){
+    stringstream info_review;
 
     if (comentario.length() == 0){
-        cout << "No hay comentarios" << endl;
+        info_review << "No hay comentarios" << "\n";
     } else {
-        cout << "Comentarios: " << comentario << endl;
+        info_review << "Comentarios: " << comentario << "\n";
     }
-    cout << "Puntuacion: " << calificacion << endl;
+    info_review << "Puntuacion: " << calificacion << "\n";
+    
+    return info_review.str();
 }
 
 
