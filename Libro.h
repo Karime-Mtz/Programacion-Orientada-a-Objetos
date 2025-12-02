@@ -3,6 +3,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "Valoracion.h"
 using namespace std;
 
@@ -11,50 +12,50 @@ class Libro {
     private:
         string titulo;
         string autor;
-        int num_pags;
         Valoracion lista_reviews[20];
-        Valoracion review;
         int num_reviews;
+        bool disponible;
 
     public:
         Libro();
-        Libro(string title, string aut, int pags);
+        Libro(string title, string aut, bool disponible);
 
-        void mostrar_info_libro();
+        string mostrar_info_libro();
 
         float getPromedio_calificacion();
         string getTitulo();
         string getAutor();
-        int getNum_pags();
+        bool get_disponible();
 
         void setTitulo(string title);
-        void setAutor(string author);
-        void setNum_pags(int pags);
+        void setAutor(string autor);
+        void set_disponible(bool disponible);
 
-        void agregar_review(string comment, int cali);
-        
-
+        void agregar_review(string comment, int cali);       
 };
 
 Libro::Libro(){
     titulo = "Desconocido";
     autor = "Desconocido";
-    num_pags = 0;
+    disponible = true;
     num_reviews = 0;
 }
 
-Libro::Libro(string title, string aut, int pags){
+Libro::Libro(string title, string aut, bool d){
     titulo = title;
     autor = aut;
-    num_pags = pags;
+    disponible = d;
     num_reviews = 0;
 }
 
+string Libro::mostrar_info_libro() {
+    stringstream datos_libro;
 
-void Libro::mostrar_info_libro(){
-    cout << "Título: " << titulo << endl;
-    cout << "Autor: " <<autor << endl;
-    cout << "Número de páginas: " << num_pags << endl;
+    datos_libro << "\nTítulo: " << titulo << "\n";
+    datos_libro << "Autor: " << autor << "\n";
+    datos_libro << "Disponible: " << disponible << "\n";
+
+    return datos_libro.str();
 }
 
 string Libro::getTitulo(){
@@ -65,8 +66,8 @@ string Libro::getAutor(){
     return autor;
 }
 
-int Libro::getNum_pags(){
-    return num_pags;
+bool Libro::get_disponible(){
+    return disponible;
 }
 
 void Libro::setTitulo(string title){
@@ -78,8 +79,8 @@ void Libro::setAutor(string author){
     autor = author;
 }
 
-void Libro::setNum_pags(int pags){
-    num_pags = pags;
+void Libro::set_disponible(bool d){
+    disponible = d;
 }
 
 float Libro::getPromedio_calificacion(){
@@ -93,8 +94,7 @@ float Libro::getPromedio_calificacion(){
 
 void Libro::agregar_review(string comment, int cali){
     if (num_reviews < 20) {
-        review = Valoracion(comment, cali);
-        lista_reviews[num_reviews] = review;
+        lista_reviews[num_reviews] = Valoracion(comment, cali);
         num_reviews += 1;
     }
 }
