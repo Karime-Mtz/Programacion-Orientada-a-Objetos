@@ -13,4 +13,5 @@ de un menu, a través del cual el usuario puede realizar las acciones que él de
 
 ## Instrucciones
 Compilar con: ´g++ main.cpp -o main´
+
 Correr en windows: ´.\/main.exe´
