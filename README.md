@@ -12,6 +12,6 @@ Este programa funciona como una biblioteca digital, en la cual el usuario puede 
 de un menu, a través del cual el usuario puede realizar las acciones que él desee hasta que decida salir del programa.
 
 ## Instrucciones
-Compilar con: `g++ main.cpp -o main`
+Compilar con: `g++ Main.cpp -o main`
 
 Correr en windows: `.\/main.exe`
