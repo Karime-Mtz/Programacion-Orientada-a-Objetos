@@ -61,7 +61,7 @@ Usuario::Usuario(){
 }
 
 /**
- * Constructor que recibe valores para llenar las variables de instancia
+ * Constructor recibe valores para llenar las variables de instancia
  *
  * @param string name: nombre del usuario, int age: edad de la persona, 
  * int prestados: cantidad de libros que ha pedido prestados
@@ -162,7 +162,7 @@ void Usuario::agregar_libro_prestado(Libro &b){
 /**
  * Devuelve un libro previamente prestado. Busca el titulo del libro
  * dentro de la lista de libros prestados, comparando en minúsculas y 
- * lo elimina de la lista. Tambien actualiza la disponibilidad del libro.
+ * lo elimina. Tambien actualiza la disponibilidad del libro.
  *
  * @param string: titulo del libro que se quiere devolver
  * @return true: si el libro fue encontrado y devuelto, 
