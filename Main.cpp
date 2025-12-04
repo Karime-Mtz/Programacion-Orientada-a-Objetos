@@ -6,8 +6,9 @@
  */
 
 /**
- * Este es un programa que captura diferentes tipos de empleados con sus respectivos sueldos, y nos
- * permite calcular la nomina para cada tipo de empleado diferente.
+ * Este es un programa que simula una biblioteca digital. Gestiona 
+ * libros, usuarios y valoraciones mediante un sistema interactivo, a
+ * través del cual se pueden realizar las tareas más comunes.
 */
 
 // Bibliotecas
@@ -27,7 +28,9 @@ using namespace std;
 char menu(){
 
     // Imprime las opciones que se pueden realizar en el programa
-    cout << "\nElige una de las siguientes opciones (a/b/c/d/e/f/g):" << endl;
+    cout << "\nElige una de las siguientes opciones "
+        "(a/b/c/d/e/f/g):" 
+     << endl;
     cout << "a) Agregar libro a la biblioteca" << endl;
     cout << "b) Buscar libro" << endl;
     cout << "c) Pedir libro prestado" << endl;
@@ -46,7 +49,8 @@ char menu(){
 }
 
 /**
- * Función que recorre cada caracter del string y lo convierte en minusculas
+ * Función que recorre cada caracter del string 
+ * y lo convierte a minusculas
  *
  * @param string s: texto que quiere ser pasado a minusculas
  * @return string s: texto en minusculas
@@ -63,7 +67,8 @@ string a_minusculas(string s) {
  * Función que busca un libro dentro de una lista y regresa la posicion
  * donde se encuentra. 
  *
- * @param Libro lista[]: arreglo de libros donde se busca, int &cantidad: número de libros dentro de la lista,
+ * @param Libro lista[]: arreglo de libros donde se busca, 
+ * int &cantidad: número de libros dentro de la lista,
  * string titulo: título del libro que se quiere buscar
  * @return int: posición del libro en la lista o -1 si no se encontro
  */
@@ -112,7 +117,7 @@ void agregar_libro(Libro lista_libros[], int &cantidad_libros){
     cout << "Quien es el autor?" << endl;
     getline(cin, escritor);
 
-    // Creacion del libro según el tipo, tomando en cuenta sus atributos especiales
+    // Creacion del libro según el tipo y sus atributos especiales
     if (tipo == 1){
         // Libro en general
         lista_libros[cantidad_libros++] = Libro(title, escritor, true);
@@ -124,7 +129,8 @@ void agregar_libro(Libro lista_libros[], int &cantidad_libros){
         cin >> es_saga;
 
         // Creacion de Novela
-        lista_libros[cantidad_libros] = Novela(title, escritor, true, genero, es_saga);
+        lista_libros[cantidad_libros] =
+            Novela(title, escritor, true, genero, es_saga);
         cantidad_libros ++;
     } 
     else if (tipo == 3){
@@ -132,7 +138,8 @@ void agregar_libro(Libro lista_libros[], int &cantidad_libros){
         getline(cin, univers);
 
         // Creacion de Comic
-        lista_libros[cantidad_libros] = Comic(title, escritor, true, univers);
+        lista_libros[cantidad_libros] =
+            Comic(title, escritor, true, univers);
         cantidad_libros ++;
     } 
     else if (tipo == 4) {
@@ -140,7 +147,8 @@ void agregar_libro(Libro lista_libros[], int &cantidad_libros){
         getline(cin, character);
 
         // Creacion de Biografia
-        lista_libros[cantidad_libros] = Biografia(title, escritor, true, character);
+        lista_libros[cantidad_libros] =
+            Biografia(title, escritor, true, character);
         cantidad_libros ++;
     }
 }
@@ -148,42 +156,45 @@ void agregar_libro(Libro lista_libros[], int &cantidad_libros){
 /**
  * Permite buscar un libro por título y muestra su información.
  *
- * @param Libro lista_libros[]: lista de libros, int& cantidad_libros: cantidad total de libros
+ * @param Libro lista_libros[]: lista de libros, 
+ * int& cantidad_libros: cantidad total de libros
  * @return
  */
 
 void buscar_libro(Libro lista_libros[], int &cantidad_libros){
-    string titulo;
+    string title;
     cout << "¿Cual es el titulo?" << endl;
-    getline(cin, titulo);
+    getline(cin, title);
 
     // Llama a la funcion posicion libro
-    int position = posicion_libro(lista_libros, cantidad_libros, titulo);
+    int pos = posicion_libro(lista_libros, cantidad_libros, title);
 
-    if (position == -1) {
+    if (pos == -1) {
         cout << "No se encontro el libro" << endl;
     } else {
         // Imprime los datos usando el método del objeto libro
-        cout << lista_libros[position].mostrar_info_libro();
+        cout << lista_libros[pos].mostrar_info_libro();
     }
 }
 
 /**
- * Presta un libro al usuario si está disponible y actualiza el status del libro.
+ * Presta un libro al usuario si está disponible y actualiza el 
+ * status del libro.
  *
  * @param Libro lista_libros[]: lista de libros,  int& cantidad_libros, 
  * Usuario& user1: usuario que pide el préstamo
  * @return 
  */
-void prestar_libro(Libro lista_libros[], int &cantidad_libros, Usuario &user1){
+void prestar_libro(Libro lista_libros[], int &cantidad_libros, 
+                   Usuario &user1){
     // Asegura que no se exceda el limite de libros prestados
     if (user1.get_cantidad_prestados() < 10){
-        string titulo;
+        string title;
         cout << "¿Cual es el titulo del libro a prestar?" << endl;
-        getline(cin, titulo);
+        getline(cin, title);
 
         // Guarda la posicion del libro a prestar
-        int pos = posicion_libro(lista_libros, cantidad_libros, titulo);
+        int pos = posicion_libro(lista_libros, cantidad_libros, title);
 
         if (pos == -1) {
             cout << "Libro no encontrado" << endl;
@@ -207,7 +218,8 @@ void prestar_libro(Libro lista_libros[], int &cantidad_libros, Usuario &user1){
  * Usuario& user1: usuario que devuelve el libro
  * @return
  */
-void devolver_libro(Libro lista_libros[], int &cantidad_libros, Usuario &user1){
+void devolver_libro(Libro lista_libros[], int &cantidad_libros,    
+                    Usuario &user1){
     string titulo;
     cout << "¿Que libro te gustaria devolver?" << endl;
     getline(cin, titulo);
@@ -228,7 +240,7 @@ void devolver_libro(Libro lista_libros[], int &cantidad_libros, Usuario &user1){
 }
 
 /**
- * Califica un libro con estrellas y permite agregar comentarios opcionales.
+ * Califica un libro con estrellas y agrega comentarios opcionales.
  *
  * @param Libro lista_libros[], int& cantidad_libros
  * @return 
@@ -243,11 +255,11 @@ void calificar_libro(Libro lista_libros[], int &cantidad_libros){
     getline(cin, libro);
 
     // Busca y guarda la posicion del libro en la lista
-    int posicion = posicion_libro(lista_libros, cantidad_libros, libro);
-    while (posicion == -1){
+    int pos = posicion_libro(lista_libros, cantidad_libros, libro);
+    while (pos == -1){
         cout << "Libro no encontrado. Intentalo de nuevo" << endl;
         getline(cin, libro);
-        posicion = posicion_libro(lista_libros, cantidad_libros, libro);
+        pos = posicion_libro(lista_libros, cantidad_libros, libro);
     }   
 
     // Pide la calificacion al usuario         
@@ -255,7 +267,8 @@ void calificar_libro(Libro lista_libros[], int &cantidad_libros){
     cin >> estrellas;
     // Valida que no se salga del rango
     while(estrellas < 1 || estrellas > 5){
-        cout << "Calificacion no valida. Vuelvelo a intentar (1-5) " << endl;
+       cout << "Calificacion no valida. "
+        "Vuelvelo a intentar (1-5) "<< endl;
         cin >> estrellas;
     }
     cin.ignore();
@@ -280,7 +293,7 @@ void calificar_libro(Libro lista_libros[], int &cantidad_libros){
     }
     
     // Agrega el comentario a la lista de resenias
-    lista_libros[posicion].agregar_review(comment, estrellas);
+    lista_libros[pos].agregar_review(comment, estrellas);
     cout << "Tu resenia fue agregada exitosamente" << endl; 
 }
 
@@ -301,10 +314,11 @@ void datos_usuario(Usuario &user1){
  * @return
  */
 void libros_biblioteca(Libro lista_libros[], int &cantidad_libros){
-    // Recorre la lista y muestra el titulo de cada libro junto son su status
+    // Recorre la lista y muestra el titulo de cada libro y su status
     for (int i = 0; i < cantidad_libros; i ++){
-        cout << "\n" << lista_libros[i].get_titulo() << " -- ";
-        cout << " Disponible: " << lista_libros[i].get_disponible() << endl;
+        cout << "\n" << lista_libros[i].get_titulo()
+        << "  --  Disponible: "
+        << lista_libros[i].get_disponible() << endl;
     }
 }
 
@@ -332,8 +346,10 @@ void ver_resenias(Libro lista_libros[], int &cantidad_libros){
     
     // Checa si el libro ya tiene calificaciones o no
     promedio = lista_libros[pos].obtener_promedio();
-    if (promedio == 0 && lista_libros[pos].mostrar_comentarios() == "No hay ningun comentario\n"){
-            cout << "Estrellas: No hay calificaciones" << endl;
+    if (promedio == 0 && 
+        lista_libros[pos].mostrar_comentarios() == 
+            "No hay ningun comentario\n"){
+        cout << "Estrellas: No hay calificaciones" << endl;
     } else {
             cout << "Estrellas: " << promedio << endl;
     }
@@ -349,10 +365,12 @@ int main() {
     // Agregar libros iniciales a la biblioteca:
     Libro Principito("El Principito", "Antoine de Saint-Exupery", true);
     Novela Mujercitas("Mujercitas", "Louisa May", true, "Romance", true);
-    Biografia Steve_Jobs("Steve Jobs", "Walter Isaacson", true, "Steve Jobs");
+    Biografia Steve_Jobs("Steve Jobs", "Walter Isaacson", 
+                        true, "Steve Jobs");
     Comic Batman("Batman: Anio Uno", "Frank Miller", true, "DC");
     Libro Momo("Momo", "Michael Ende", true);
-    Novela Frankenstein("Frankenstein", "Mary Shelley", true, "Horror", false);
+    Novela Frankenstein("Frankenstein", "Mary Shelley", 
+                        true, "Horror", false);
     Comic Sandman("The Sandman", "Neil Gaiman", true, "DC");
 
     // Arreglo donde se guardan todos los libros de la biblioteca
@@ -384,10 +402,10 @@ int main() {
         cin.ignore(10000, '\n');
     }
 
-    // Crea objeto Usuario con los datos proporcionados y cero libros prestados
+    // Crea un Usuario con los datos brindados y cero libros prestados
     Usuario user1(nombre_usuario, age, 0);
 
-    // Permite que se realicen varias acciones hasta que el usuario salga del programa
+    // Permite realizar varias acciones hasta que se salga del programa
     while (true) {
         // Muestra el menu principial y recibe la opcion elegida
         char choice = menu();
@@ -425,7 +443,7 @@ int main() {
             }
 
             case 'f': {
-                // Muestra los datos del usuario y los libros que ha pedido prestados
+                // Muestra los datos del usuario y los libros prestados
                 datos_usuario(user1);
                 break;
             }
