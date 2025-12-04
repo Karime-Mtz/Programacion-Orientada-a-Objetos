@@ -43,11 +43,11 @@ Comic::Comic() : Libro(){
 }
 
 /**
- * Constructor que recibe valores para llenar las variables de instancia
+ * Constructor recibe valores para llenar las variables de instancia
  * de este objeto, además de las variables heredadas
  *
- * @param string string t: titulo del libro, string a: autor, bool d: disponibilidad
- * string u: universo del comic
+ * @param string string t: titulo del libro, string a: autor, 
+ * bool d: disponibilidad, string u: universo del comic
  * @return objeto Comic
  */
 Comic::Comic(string t, string a, bool d, string u) : Libro(t,a,d){
