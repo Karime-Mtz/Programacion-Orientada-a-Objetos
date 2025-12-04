@@ -33,8 +33,6 @@ class Valoracion {
 
         int get_calificacion();
         void set_calificacion(int n);
-
-        string agregar_comentario(string comment);
 };
 
 /**
@@ -49,7 +47,7 @@ Valoracion::Valoracion(){
 }
 
 /**
- * Constructor que recibe valores para llenar las variables de instancia
+ * Constructor recibe valores para llenar las variables de instancia
  *
  * @param string comment: comentarios acerca del libro leido, 
  * int cali: calificacion que se le da un libro
