@@ -45,8 +45,6 @@ class Libro {
         string get_titulo();
         string get_autor();
         bool get_disponible();
-        Valoracion get_review(int i);
-        int get_num_reviews();
 
         void set_titulo(string title);  
         void set_autor(string aut);
@@ -71,7 +69,7 @@ Libro::Libro(){
 }
 
 /**
- * Constructor que recibe valores para llenar las variables de instancia
+ * Constructor recibe valores para llenar las variables de instancia
  *
  * @param string title: titulo del libro, string aut: nombre del autor, 
  * bool d: muestra si el libro se puede pedir prestado o no
@@ -185,8 +183,8 @@ float Libro::obtener_promedio(){
  * Guarda un registro de las resenias que se le dan a cada libro.
  * Crea un objeto Valoracion y lo agrega a una lista tipo Valoracion.
  *
- * @param string comment: comentario del libro, int cali: calificacion que 
- * se le da al libro
+ * @param string comment: comentario del libro, int cali: calificacion 
+ * que se le da al libro
  * @return string con los atributos del libro
 */
 void Libro::agregar_review(string comment, int cali){
