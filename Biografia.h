@@ -45,16 +45,20 @@ Biografia::Biografia(): Libro(){
 }
 
 /**
- * Constructor que recibe valores para llenar las variables de instancia
+ * Constructor recibe valores para llenar las variables de instancia
  * de este objeto, además de las variables heredadas
  *
- * @param string string t: titulo del libro, string a: autor, bool d: disponibilidad
- * string e: personaje del que trata la biografia
+ * @param string string t: titulo del libro, string a: autor, 
+ * bool d: disponibilidad, string e: personaje principal
  * @return objeto Biografia
  */
-Biografia:: Biografia(string t, string a, bool d, string e) : Libro(t,a,d){
+Biografia::Biografia(string t, string a, bool d,
+                     string e)
+    : Libro(t, a, d)
+{
     personaje = e;
 }
+
 
 /**
  * getter personaje
