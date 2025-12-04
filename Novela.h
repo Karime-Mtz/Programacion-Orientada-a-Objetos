@@ -49,17 +49,22 @@ Novela::Novela() : Libro(){
 }
 
 /**
- * Constructor que recibe valores para llenar las variables de instancia
+ * Constructor recibe valores para llenar las variables de instancia
  * de este objeto, además de las variables heredadas
  *
- * @param string string t: titulo del libro, string a: autor, bool d: disponibilidad
- * string g: genero del libro, bool e: indica si es parte de una saga o no
+ * @param string string t: titulo del libro, string a: autor, 
+ * bool d: disponibilidad, string g: genero del libro, 
+ * bool e: indica si es parte de una saga o no
  * @return objeto Novela
  */
-Novela::Novela(string t, string a, bool d, string g, bool e): Libro(t,a,d){
+Novela::Novela(string t, string a, bool d,
+               string g, bool e)
+    : Libro(t, a, d)
+{
     genero = g;
     es_saga = e;
 }
+
 
 /**
  * getter genero
