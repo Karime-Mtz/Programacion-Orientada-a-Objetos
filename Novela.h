@@ -25,15 +25,15 @@ class Novela : public Libro{
         bool es_saga;
 
     public:
-            // Declaracion de los metodos del objeto
-            Novela();
-            Novela(string t, string a, bool d, string g, bool e);
+        // Declaracion de los metodos del objeto
+        Novela();
+        Novela(string t, string a, bool d, string g, bool e);
             
-            string get_genero();
-            bool get_es_saga();
+        string get_genero();
+        bool get_es_saga();
 
-            void set_genero(string gender);
-            void set_es_saga(bool saga);
+        void set_genero(string gender);
+        void set_es_saga(bool saga);
 
 };
 
