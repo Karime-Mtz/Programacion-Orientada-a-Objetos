@@ -7,9 +7,21 @@ Existen tres tipos más específicos de libros: Novela, Comic y Biografia.
 ## Funcionalidad del Programa
 Este proyecto administra libros, usuarios y valoraciones mediante un sistema interactivo. El programa ofrece un menú principal con diferentes acciones que puede realizar el usuario, las cuales se concentran en estas cuatro secciones:
 - Administración de libros
+    - Buscar libros por titulo
+    - Agregar nuevos libros a la biblioteca
+    - Consulat la lista completa de libros
 - Préstamos
+    - Solicitar libro prestados
+    - Devolver libros
+    - Checar disponibilidad de los libros
 - Reseñas y valoraciones
+    - Calificar libros
+    - Agregar comentarios opcionales
+    - Consultar reseñas
 - Administración del usuario
+    - Registrar nombre y edad
+    - Consultar datos personales
+    - Llevar un registro de los libros prestados
 
 El objetivo es que el usuario interactúe de forma intuitiva con el programa, llevando un registro de sus préstamos y haciendo uso de herramientas extras como las calificaciones y los comentarios.
 
